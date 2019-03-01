@@ -14,6 +14,7 @@ namespace DecisionCore.Models
             : base(options)
         {
         }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
