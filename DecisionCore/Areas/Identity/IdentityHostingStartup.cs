@@ -19,8 +19,20 @@ namespace DecisionCore.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("IdentityContextConnection")));
 
-                services.AddDefaultIdentity<IdentityUser>()
-                    .AddEntityFrameworkStores<DecisionIdentityDbContext>();
+                //services.AddDefaultIdentity<IdentityUser>()
+                //    .AddEntityFrameworkStores<DecisionIdentityDbContext>();
+
+                services
+                .AddIdentityCore<IdentityUser>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<DecisionIdentityDbContext>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
+
+                services
+                .AddAuthentication(IdentityConstants.ApplicationScheme)
+                .AddCookie(IdentityConstants.ApplicationScheme);
+
             });
         }
     }
