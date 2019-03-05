@@ -1,5 +1,5 @@
 ﻿using System;
-using DecisionCore.Models;
+using DecisionCore.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -15,24 +15,6 @@ namespace DecisionCore.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<DecisionIdentityDbContext>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("IdentityContextConnection")));
-
-                //services.AddDefaultIdentity<IdentityUser>()
-                //    .AddEntityFrameworkStores<DecisionIdentityDbContext>();
-
-                services
-                .AddIdentityCore<IdentityUser>()
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<DecisionIdentityDbContext>()
-                .AddDefaultUI()
-                .AddDefaultTokenProviders();
-
-                services
-                .AddAuthentication(IdentityConstants.ApplicationScheme)
-                .AddCookie(IdentityConstants.ApplicationScheme);
-
             });
         }
     }
